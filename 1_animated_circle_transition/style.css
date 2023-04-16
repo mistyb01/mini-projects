@@ -1,0 +1,30 @@
+
+body {
+    transition: color 0.5s;
+    font-size: 2rem;
+}
+
+:root {
+    --circle-color: "blue";
+}
+
+main {
+    width: 60vw;
+    margin: 5rem auto;
+}
+
+.container {
+    position: fixed;
+    bottom: 3rem;
+    left: 3rem;
+    z-index: -1;
+}
+
+.circle {
+    position: fixed;
+    bottom: -50vw;
+    left: -50vw;
+    border-radius: 100vw;
+    background-color: var(--circle-color);
+    z-index: -1;
+}
