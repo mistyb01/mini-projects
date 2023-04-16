@@ -2,6 +2,7 @@ const checkValidHex = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
 
 function hexToRgb(hex) {
     if (!checkValidHex.test(hex)) return "not a valid hex code";
+    if (hex.charAt(0) === "#") { hex = hex.substring(1) }
     hex = hex.toLowerCase();
     let rgb = [];
 
@@ -25,7 +26,6 @@ function hexToRgb(hex) {
         if (/[a-f]/g.test(num2)) {
             num2 = convertLetter(num2);
         }
-        console.log("pair:", num1, num2);
         let rgbVal = (parseInt(num1) * 16) + parseInt(num2);
         rgb.push(rgbVal);
     }
