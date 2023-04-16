@@ -26,7 +26,7 @@ function hexToRgb(hex) {
             num2 = convertLetter(num2);
         }
         console.log("pair:", num1, num2);
-        let rgbVal = (num1 * 16) + num2;
+        let rgbVal = (parseInt(num1) * 16) + parseInt(num2);
         rgb.push(rgbVal);
     }
     return rgb;
