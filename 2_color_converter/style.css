@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, 
+input,
+button {
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.color-preview {
+    border: 1px solid black;
+    width: 3rem;
+    height: 3rem;
+}
