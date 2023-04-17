@@ -79,13 +79,46 @@ function rgbToHex(rgb) {
 }
 
 rgbForm.addEventListener("input", () => {
-    // hacky form validation..
-    // if (rgbInputR.value > 255) rgbInputR.value = 255;
-    // if (rgbInputG.value > 255) rgbInputG.value = 255;
-    // if (rgbInputB.value > 255) rgbInputB.value = 255;
-
     let hex = rgbToHex([rgbInputR.value,  rgbInputG.value, rgbInputB.value]);
     inputHex.value = hex;
     colorPreview.style.backgroundColor = `#${hex}`
 });
 
+function rgbToHsl(rgb) {
+    let R = rgb[0] / 255;
+    let G = rgb[1] / 255;
+    let B = rgb[2] / 255;
+    let min = Math.min(R, G, B);
+    let max = Math.max(R, G, B);
+
+    // calculate luminance
+    let luminance = (min + max) / 2;
+
+    // calculate saturation
+    let saturation;
+    if (min === max) { 
+        saturation = 0; 
+    } else {
+        if (luminance <= 0.5) {
+            saturation = (max-min)/(max+min);
+        }  else {
+            saturation = (max-min)/(2.0-max-min)
+        }
+    }
+
+    // calculate hue
+    let hue;
+    if (max === R) {
+        hue = (G-B)/(max-min);
+    } else if (max === G) {
+        hue = 2.0 + (B-R)/(max-min);
+    } else { //max === B 
+        hue = 4.0 + (R-G)/(max-min);
+    }
+    hue *= 60;
+    if (hue < 0) { hue += 360 }
+
+    const hsl = [Math.round(hue * 10)/10, Math.round(saturation * 10)/10, Math.round(luminance*10)/10];
+    console.log(hsl);
+
+}
