@@ -1,6 +1,6 @@
 const colorPreview = document.querySelector(".color-preview");
 const inputHex = document.getElementById("inputHex");
-inputHex.addEventListener("input", getHex);
+inputHex.addEventListener("input", getRgb);
 
 const rgbInputR = document.getElementById("inputRed");
 const rgbInputG = document.getElementById("inputGreen");
@@ -27,7 +27,6 @@ function hexToRgb(hex) {
         }
     }
 
-
     for (let i = 0; i < 6; i+=2) {
         let num1 = hex.charAt(i);
         if (/[a-f]/g.test(num1)) {
@@ -43,7 +42,7 @@ function hexToRgb(hex) {
     return rgb;
 }
 
-function getHex(e) {
+function getRgb(e) {
     let hexInput = e.target.value;
     let rgbResult;
     if (checkValidHex.test(hexInput)) {
@@ -53,4 +52,29 @@ function getHex(e) {
         rgbInputB.value = rgbResult[2];
         colorPreview.style.backgroundColor = `rgb(${rgbResult[0]},${rgbResult[1]},${rgbResult[2]})`
     }
+}
+
+function rgbToHex(rgb) {
+    let hex = "";
+    for (let i = 0; i < 3; i++) {
+        let rgbVal = rgb[i];
+        let secondDigit = rgbVal % 16;
+        let firstDigit = (rgbVal - secondDigit) / 16;
+        if (secondDigit > 9) secondDigit = convertNumber(secondDigit);
+        if (firstDigit > 9) {
+            firstDigit = convertNumber(firstDigit)
+        }
+        hex += firstDigit.toString() + secondDigit.toString();
+    }
+    function convertNumber(val) {
+        switch(val) {
+            case 10: return "a"; 
+            case 11: return "b"; 
+            case 12: return "c"; 
+            case 13: return "d"; 
+            case 14: return "e"; 
+            case 15: return "f"; 
+        }
+    }
+    return hex;
 }
