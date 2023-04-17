@@ -1,11 +1,15 @@
-const checkValidHex = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
-const form = document.getElementById("form");
 const rgbText = document.querySelector(".rgb-text");
 const colorPreview = document.querySelector(".color-preview");
+const inputHex = document.getElementById("inputHex");
+inputHex.addEventListener("input", getHex);
+
+const checkValidHex = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
 
 function hexToRgb(hex) {
     if (!checkValidHex.test(hex)) return "not a valid hex code";
     if (hex.charAt(0) === "#") hex = hex.substring(1);
+    if (hex.length === 3) hex = hex.concat(hex);
+    
     hex = hex.toLowerCase();
     let rgb = [];
 
@@ -19,6 +23,7 @@ function hexToRgb(hex) {
             case "f": return 15; 
         }
     }
+
 
     for (let i = 0; i < 6; i+=2) {
         let num1 = hex.charAt(i);
@@ -35,16 +40,12 @@ function hexToRgb(hex) {
     return rgb;
 }
 
-form.addEventListener("submit", handleConversion);
-
-function handleConversion(e) {
-    e.preventDefault();
-    // get hex value from the form input
-    const formData = e.target;
-    const hexValue = formData.elements['inputHex'].value;
-    // run it through function
-    const rgbResult = hexToRgb(hexValue);
-    // update the UI with the result
-    rgbText.innerText = rgbResult;
-    colorPreview.style.backgroundColor = `rgb(${rgbResult[0]},${rgbResult[1]},${rgbResult[2]})`
+function getHex(e) {
+    let hexInput = e.target.value;
+    let rgbResult;
+    if (checkValidHex.test(hexInput)) {
+        rgbResult = hexToRgb(hexInput);
+        rgbText.innerText = rgbResult;
+        colorPreview.style.backgroundColor = `rgb(${rgbResult[0]},${rgbResult[1]},${rgbResult[2]})`
+    }
 }
