@@ -12,17 +12,41 @@
       <h1>convert a color 🎨</h1>
       <div class="color-preview"></div>
       <div>
-        <label for="inputHex">hex code</label>
-        <input name="inputHex" id="inputHex" type="text" />
+        <label for="inputHex">hex code #</label>
+        <input name="inputHex" id="inputHex" type="text" maxlength="6" />
       </div>
-      <div class="rgb-container">
+      <form id="rgb-form">
         <label for="red">R</label>
-        <input name="inputRed" id="inputRed" class="inputRgb" type="text" />
+        <input
+          name="inputRed"
+          id="inputRed"
+          class="inputRgb"
+          type="number"
+          maxlength="3"
+          min="0"
+          max="255"
+        />
         <label for="green">G</label>
-        <input name="inputGreen" id="inputGreen" class="inputRgb" type="text" />
+        <input
+          name="inputGreen"
+          id="inputGreen"
+          class="inputRgb"
+          type="number"
+          maxlength="3"
+          min="0"
+          max="255"
+        />
         <label for="blue">B</label>
-        <input name="inputBlue" id="inputBlue" class="inputRgb" type="text" />
-      </div>
+        <input
+          name="inputBlue"
+          id="inputBlue"
+          class="inputRgb"
+          type="number"
+          maxlength="3"
+          min="0"
+          max="255"
+        />
+      </form>
     </main>
     <script src="script.js"></script>
   </body>

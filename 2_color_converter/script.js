@@ -2,6 +2,7 @@ const colorPreview = document.querySelector(".color-preview");
 const inputHex = document.getElementById("inputHex");
 inputHex.addEventListener("input", getRgb);
 
+const rgbForm = document.getElementById("rgb-form");
 const rgbInputR = document.getElementById("inputRed");
 const rgbInputG = document.getElementById("inputGreen");
 const rgbInputB = document.getElementById("inputBlue");
@@ -61,9 +62,7 @@ function rgbToHex(rgb) {
         let secondDigit = rgbVal % 16;
         let firstDigit = (rgbVal - secondDigit) / 16;
         if (secondDigit > 9) secondDigit = convertNumber(secondDigit);
-        if (firstDigit > 9) {
-            firstDigit = convertNumber(firstDigit)
-        }
+        if (firstDigit > 9) firstDigit = convertNumber(firstDigit)
         hex += firstDigit.toString() + secondDigit.toString();
     }
     function convertNumber(val) {
@@ -78,3 +77,15 @@ function rgbToHex(rgb) {
     }
     return hex;
 }
+
+rgbForm.addEventListener("input", () => {
+    // hacky form validation..
+    // if (rgbInputR.value > 255) rgbInputR.value = 255;
+    // if (rgbInputG.value > 255) rgbInputG.value = 255;
+    // if (rgbInputB.value > 255) rgbInputB.value = 255;
+
+    let hex = rgbToHex([rgbInputR.value,  rgbInputG.value, rgbInputB.value]);
+    inputHex.value = hex;
+    colorPreview.style.backgroundColor = `#${hex}`
+});
+
