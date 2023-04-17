@@ -1,7 +1,10 @@
-const rgbText = document.querySelector(".rgb-text");
 const colorPreview = document.querySelector(".color-preview");
 const inputHex = document.getElementById("inputHex");
 inputHex.addEventListener("input", getHex);
+
+const rgbInputR = document.getElementById("inputRed");
+const rgbInputG = document.getElementById("inputGreen");
+const rgbInputB = document.getElementById("inputBlue");
 
 const checkValidHex = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
 
@@ -45,7 +48,9 @@ function getHex(e) {
     let rgbResult;
     if (checkValidHex.test(hexInput)) {
         rgbResult = hexToRgb(hexInput);
-        rgbText.innerText = rgbResult;
+        rgbInputR.value = rgbResult[0];
+        rgbInputG.value = rgbResult[1];
+        rgbInputB.value = rgbResult[2];
         colorPreview.style.backgroundColor = `rgb(${rgbResult[0]},${rgbResult[1]},${rgbResult[2]})`
     }
 }

@@ -9,11 +9,20 @@
   </head>
   <body>
     <main>
-      <h1>hex to rgb</h1>
+      <h1>convert a color 🎨✨</h1>
       <div class="color-preview"></div>
-      <label for="inputHex">hex code</label>
-      <input name="inputHex" id="inputHex" type="text" />
-      <div class="rgb-container">rgb: <span class="rgb-text"></span></div>
+      <div>
+        <label for="inputHex">hex code</label>
+        <input name="inputHex" id="inputHex" type="text" />
+      </div>
+      <div class="rgb-container">
+        <label for="red">R</label>
+        <input name="inputRed" id="inputRed" class="inputRgb" type="text" />
+        <label for="green">G</label>
+        <input name="inputGreen" id="inputGreen" class="inputRgb" type="text" />
+        <label for="blue">B</label>
+        <input name="inputBlue" id="inputBlue" class="inputRgb" type="text" />
+      </div>
     </main>
     <script src="script.js"></script>
   </body>
